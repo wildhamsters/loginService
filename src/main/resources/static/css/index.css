@@ -1,3 +1,4 @@
+@import "css/normalize.css";
 table {
 	table-layout: fixed;
 	font-family: futura-pt, monospace;

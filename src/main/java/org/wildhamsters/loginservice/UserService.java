@@ -39,6 +39,8 @@ class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("Not found: " + username);
         }
         Logger.log(Log.Level.INFO, this.getClass(), "User %s logged into the game.".formatted(username));
+        LoginserviceApplication.JEDIS.set("session", username);
+        
         return User.withUsername(userEntity.get().getName())
                 .password(userEntity.get().getPassword())
                 .authorities(userEntity.get().getAuthority())
