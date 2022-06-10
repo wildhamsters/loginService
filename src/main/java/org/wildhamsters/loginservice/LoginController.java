@@ -21,4 +21,9 @@ public class LoginController {
         return "welcome.html";
     }
 
+    @GetMapping("/stats")
+    String showStatisticsPage() {
+        return "stats.html";
+    }
+
 }
