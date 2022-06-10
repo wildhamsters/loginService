@@ -36,7 +36,7 @@ public class LoginController {
         String session = RequestContextHolder.currentRequestAttributes().getSessionId();
         attributes.addAttribute("userName", user.getName());
         attributes.addAttribute("sessionId", session);
-        return new RedirectView("http://localhost:8080/gameroom");
+        return new RedirectView("http://64.225.104.111:8080/gameroom");
     }
 
 }

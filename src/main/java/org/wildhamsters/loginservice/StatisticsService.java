@@ -33,7 +33,7 @@ public class StatisticsService {
     )
     List<SingleMatchStatistics> findAllStatistics() {
         Optional<List<SingleMatchStatistics>> statistics =
-                Optional.of(restTemplate.getForObject(statisticsUrl, StatisticsDTO.class).singleMatchStatisticsList());
+                Optional.of(restTemplate.getForObject("http://stats:5500/", StatisticsDTO.class).singleMatchStatisticsList());
         return statistics.orElseGet(ArrayList::new);
     }
 }
