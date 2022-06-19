@@ -38,7 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/register**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/menu").permitAll()
+                .anyRequest().authenticated().and()
+                .logout().logoutSuccessHandler(new LoginserviceSuccessLogoutHandler());
     }
 
     @Override

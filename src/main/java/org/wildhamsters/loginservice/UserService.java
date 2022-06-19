@@ -41,9 +41,8 @@ class UserService implements UserDetailsService {
         }
         Logger.log(Log.Level.INFO, this.getClass(), "User %s logged into the game.".formatted(username));
         String session = RequestContextHolder.currentRequestAttributes().getSessionId();
-        LoginserviceApplication.JEDIS
-                .set(username, session);
-
+        LoginserviceApplication.JEDIS.set(username, session);
+        System.out.println(session + "Setting user session");
         return User.withUsername(userEntity.get().getName())
                 .password(userEntity.get().getPassword())
                 .authorities(userEntity.get().getAuthority())
