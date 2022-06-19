@@ -17,8 +17,8 @@ import java.util.Optional;
 @Service
 public class StatisticsService {
 
-    @Value("${url.statistics}")
-    private String statisticsUrl;
+    // @Value("${url.statistics}")
+    // private String statisticsUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
