@@ -40,7 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register**").permitAll()
                 .antMatchers("/menu").permitAll()
                 .anyRequest().authenticated().and()
-                .logout().logoutSuccessHandler(new LoginserviceSuccessLogoutHandler());
+                .logout()
+                .logoutSuccessHandler(new LoginserviceSuccessLogoutHandler())
+                .logoutSuccessUrl("/login?logout");
     }
 
     @Override

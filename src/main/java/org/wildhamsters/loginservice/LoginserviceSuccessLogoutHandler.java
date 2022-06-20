@@ -16,7 +16,9 @@ class LoginserviceSuccessLogoutHandler extends
             HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
         String userName = authentication.getName();
-        LoginserviceApplication.JEDIS.del(userName);
+        long i = LoginserviceApplication.JEDIS.del(userName);
+        System.out.println(String.format("User %s removed from redis db, remove code %d", userName, i));
         super.onLogoutSuccess(request, response, authentication);
+
     }
 }
