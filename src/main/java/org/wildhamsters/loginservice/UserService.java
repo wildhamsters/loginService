@@ -1,12 +1,13 @@
 package org.wildhamsters.loginservice;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.web.context.request.RequestContextHolder;
 
 /**
  * @author Piotr Chowaniec
@@ -39,6 +40,9 @@ class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("Not found: " + username);
         }
         Logger.log(Log.Level.INFO, this.getClass(), "User %s logged into the game.".formatted(username));
+        String session = RequestContextHolder.currentRequestAttributes().getSessionId();
+        LoginserviceApplication.JEDIS.set(username, session);
+        System.out.println(String.format("%s setting user %s session", session, username));
         return User.withUsername(userEntity.get().getName())
                 .password(userEntity.get().getPassword())
                 .authorities(userEntity.get().getAuthority())
